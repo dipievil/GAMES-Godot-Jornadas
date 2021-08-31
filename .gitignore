@@ -6,3 +6,8 @@ export_presets.cfg
 
 # Mono-specific ignores
 .mono/
+
+#project specific
+android/
+bin/
+
