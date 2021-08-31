@@ -1,4 +1,4 @@
-name: Create issues from todos
+name: Create issues
 
 on:
   push:
