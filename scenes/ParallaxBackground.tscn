@@ -1,0 +1,117 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/backgrounds/s2/bg_3.png" type="Texture" id=1]
+[ext_resource path="res://assets/backgrounds/s2/bg_1.png" type="Texture" id=2]
+[ext_resource path="res://assets/backgrounds/s2/bg_2.png" type="Texture" id=3]
+[ext_resource path="res://assets/backgrounds/s2/bg_4.png" type="Texture" id=4]
+[ext_resource path="res://scripts/ParallaxBackground.gd" type="Script" id=6]
+[ext_resource path="res://assets/backgrounds/s2/bg_0.png" type="Texture" id=7]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Position2D
+
+func _physics_process(_delta):
+	position.y = position.y+1
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
+
+[node name="ParallaxBackground" type="Node2D"]
+script = ExtResource( 6 )
+
+[node name="Parallax" type="ParallaxBackground" parent="."]
+layer = 0
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="ParallaxLayer0" type="ParallaxLayer" parent="Parallax"]
+motion_scale = Vector2( 0.2, 1 )
+motion_offset = Vector2( 0.2, 0 )
+motion_mirroring = Vector2( 700, 0 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="0" type="Sprite" parent="Parallax/ParallaxLayer0"]
+scale = Vector2( 2.656, 2.656 )
+texture = ExtResource( 7 )
+centered = false
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="ParallaxLayer1" type="ParallaxLayer" parent="Parallax"]
+motion_scale = Vector2( 0.4, 1 )
+motion_offset = Vector2( 0.4, 0 )
+motion_mirroring = Vector2( 700, 0 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="1" type="Sprite" parent="Parallax/ParallaxLayer1"]
+scale = Vector2( 2.6691, 2.09104 )
+texture = ExtResource( 2 )
+centered = false
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Parallax"]
+motion_scale = Vector2( 0.6, 1 )
+motion_offset = Vector2( 0.6, 0 )
+motion_mirroring = Vector2( 700, 0 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="2" type="Sprite" parent="Parallax/ParallaxLayer2"]
+position = Vector2( 0.769043, -0.225922 )
+scale = Vector2( 2.656, 2.656 )
+texture = ExtResource( 3 )
+centered = false
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="Parallax"]
+motion_scale = Vector2( 0.8, 1 )
+motion_offset = Vector2( 0.8, 0 )
+motion_mirroring = Vector2( 700, 0 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="3" type="Sprite" parent="Parallax/ParallaxLayer3"]
+position = Vector2( -0.183594, -0.144203 )
+scale = Vector2( 2.656, 2.656 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="Parallax"]
+motion_offset = Vector2( 1, 0 )
+motion_mirroring = Vector2( 700, 0 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="4" type="Sprite" parent="Parallax/ParallaxLayer4"]
+position = Vector2( -0.102875, 0.106644 )
+scale = Vector2( 2.656, 2.656 )
+texture = ExtResource( 4 )
+centered = false
+
+[node name="Position2D" type="Position2D" parent="Parallax"]
+script = SubResource( 1 )

@@ -1,0 +1,23 @@
+[gd_scene format=2]
+
+[node name="SecondScene" type="ColorRect"]
+margin_right = 719.0
+margin_bottom = 1272.0
+color = Color( 0.12549, 0.117647, 0.117647, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+margin_right = 383.0
+margin_bottom = 212.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CenterContainer"]
+margin_left = 147.0
+margin_top = 99.0
+margin_right = 235.0
+margin_bottom = 113.0
+text = "Second Scene"

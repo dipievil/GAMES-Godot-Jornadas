@@ -1,0 +1,83 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/backgrounds/s1/bg_1.png" type="Texture" id=1]
+[ext_resource path="res://assets/backgrounds/s1/bg_2.png" type="Texture" id=2]
+[ext_resource path="res://assets/backgrounds/s1/bg_3.png" type="Texture" id=3]
+[ext_resource path="res://assets/backgrounds/s1/bg_4.png" type="Texture" id=4]
+[ext_resource path="res://assets/backgrounds/s1/bg_0.png" type="Texture" id=5]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Position2D
+
+func _physics_process(_delta):
+	position.y = position.y+1
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
+
+[node name="Background" type="ParallaxBackground"]
+layer = 0
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_offset = Vector2( 0.2, 0 )
+motion_mirroring = Vector2( 779, 0 )
+
+[node name="bg" type="Sprite" parent="ParallaxLayer"]
+position = Vector2( -0.590851, 0.211998 )
+scale = Vector2( 2.86547, 2.31495 )
+texture = ExtResource( 5 )
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+motion_scale = Vector2( 0.4, 1 )
+motion_mirroring = Vector2( 780, 0 )
+
+[node name="mountain" type="Sprite" parent="ParallaxLayer2"]
+position = Vector2( -0.116425, 0.106644 )
+scale = Vector2( 2.48538, 2.29622 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
+motion_scale = Vector2( 0.6, 1 )
+motion_mirroring = Vector2( 780, 0 )
+
+[node name="far-moutains" type="Sprite" parent="ParallaxLayer3"]
+position = Vector2( 0.769043, -0.225922 )
+scale = Vector2( 1.92627, 2.33368 )
+texture = ExtResource( 2 )
+centered = false
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="."]
+motion_scale = Vector2( 0.8, 1 )
+motion_mirroring = Vector2( 780, 0 )
+
+[node name="foreground-trees" type="Sprite" parent="ParallaxLayer4"]
+position = Vector2( -0.183594, -0.144203 )
+scale = Vector2( 1.77203, 2.32432 )
+texture = ExtResource( 3 )
+centered = false
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2( 780, 0 )
+
+[node name="trees" type="Sprite" parent="ParallaxLayer5"]
+position = Vector2( -0.102875, 0.106644 )
+scale = Vector2( 2.48538, 2.29622 )
+texture = ExtResource( 4 )
+centered = false
+
+[node name="Position2D" type="Position2D" parent="."]
+script = SubResource( 1 )

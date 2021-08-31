@@ -1,0 +1,15 @@
+extends "res://scripts/Loading.gd"
+
+func _ready():
+	print("-> CARREGANDO COMPANY")
+	next_screen = preload("res://scenes/LoadingPlayer.tscn")
+	resource_name = "company"
+	$HTTPRequestCompany.request(api_url+resource_name)
+		
+func _on_HTTPRequest_request_completed(_result, response_code, _headers, body):
+	if(ValidateConnection(response_code)):
+		SaveLocalGame(body.get_string_from_utf8())
+		GotoNextScreen()
+	else:
+		print("Error connecting to server :" + str(response_code))
+		return
