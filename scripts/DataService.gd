@@ -3,10 +3,10 @@ var file_path = "user://"
 
 func save_all():
 	pass
-	#TO-DO: save remotely
-	#save_file(load_data("player"),get_file_name_by_resource("player"))
-	#save_file(load_data("theme"),get_file_name_by_resource("theme"))
-	#save_file(load_data("company"),get_file_name_by_resource("company"))
+	#TODO: Add save remotely
+	#
+	# Add a global save to the API host
+
 
 func save_data(jsonData,resource_name):
 	var file_name = get_file_name_by_resource(resource_name)
