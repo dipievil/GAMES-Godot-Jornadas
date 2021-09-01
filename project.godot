@@ -14,6 +14,11 @@ config/name="Jornadas"
 run/main_scene="res://scenes/MainMenu.tscn"
 config/icon="res://assets/icon.png"
 
+[autoload]
+
+PlayerData="*res://scripts/PlayerData.gd"
+ParallaxService="*res://scripts/ParallaxService.gd"
+
 [display]
 
 window/size/width=720

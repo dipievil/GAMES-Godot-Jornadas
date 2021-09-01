@@ -13,7 +13,9 @@ func _init():
 	print("Carregou menu")
 	theme = {"s1":"Medieval","s2":"Fazenda","s3":"Viking"}
 
+
 func _ready():
+	print("Abriu menu")
 	pass
 
 
@@ -49,7 +51,7 @@ func _on_PopupDialog_about_to_show():
 
 
 func _on_ThemeMenu_about_to_show():
-	print("--> CARREGANDO MENU DE CONFIG")
+	print("--> CARREGANDO MENU DE CONFIG AO MOSTRAR")
 	#load dados user
 	options_player_theme = load_player_theme()
 	print(options_player_theme)
