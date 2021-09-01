@@ -1,4 +1,4 @@
-extends "res://scripts/Loading.gd"
+extends "res://scripts/Services/LoadingServices.gd"
 
 func _ready():
 	print("-> CARREGANDO JORNADAS")

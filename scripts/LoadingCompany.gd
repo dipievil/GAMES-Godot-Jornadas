@@ -1,8 +1,9 @@
-extends "res://scripts/Loading.gd"
+var loadingServices = load("res://scripts/LoadingServices.gd")
 
 func _ready():
+	loadingServices = loadingServices.New()
 	print("-> CARREGANDO COMPANY")
-	next_screen = preload("res://scenes/LoadingPlayer.tscn")
+	SetNextScreen(preload("res://scenes/LoadingPlayer.tscn"))
 	resource_name = "company"
 	$HTTPRequestCompany.request(api_url+resource_name)
 		
