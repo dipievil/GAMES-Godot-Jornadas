@@ -11,7 +11,7 @@ var options_player_theme = ""
 
 func _init():
 	print("Carregou menu")
-	theme = {"s1":"Medieval","s2":"Fazenda","s3":"Viking"}
+	
 
 
 func _ready():

@@ -1,5 +1,3 @@
-extends "res://scripts/PlayerData.gd"
-
 var Context = preload("res://scripts/DataService.gd")
 
 # Called when the node enters the scene tree for the first time.
