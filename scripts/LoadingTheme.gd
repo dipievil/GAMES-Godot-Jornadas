@@ -1,7 +1,7 @@
-extends "res://scripts/Services/LoadingServices.gd"
+extends "res://scripts/services/LoadingService.gd"
 
 func _ready():
-	print("-> CARREGANDO JORNADAS")
+	print("-> CARREGANDO TEMAS")
 	resource_name = "theme"
 	next_screen = preload("res://scenes/MainScreen.tscn")	
 	$HTTPRequestTheme.request(api_url+resource_name)

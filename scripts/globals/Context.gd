@@ -1,13 +1,5 @@
-
-var file_path = "user://"
-
-#TODO: Add save remotely
-#
-# Add a global save to the API host
-
 func save_all():
 	pass
-	
 
 func save_data(jsonData,resource_name):
 	var file_name = get_file_name_by_resource(resource_name)
@@ -38,4 +30,5 @@ func load_file(file_name):
 	return parseJson
 
 func get_file_name_by_resource(resource_name):
+	var file_path = "user://"
 	return str(file_path) + "DATA_" + str(resource_name) + ".sav"

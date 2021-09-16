@@ -1,8 +1,6 @@
 extends Node2D
 
-var playerTheme = "s1"
-
-var Context = preload("res://scripts/DataService.gd")
+var Context = load("res://scripts/globals/Context.gd")
 
 onready var soundtrack = $AudioStreamPlayer2D
 
@@ -13,6 +11,7 @@ func _ready():
 	print("-> CENA INICIAL")
 	load_player_data()
 	change_soundtrack()
+	var context = Context.new()
 
 func _process(_delta):
 	
@@ -25,22 +24,18 @@ func load_player_data():
 	var lblCoins = get_node(path_player_container + "/NameContainer/HBoxContainer/lblCoins")
 	var barXp : ProgressBar = get_node(path_player_container + "/XPCenterContainer/HBoxContainer/XPBar")
 	var barLife : ProgressBar  = get_node(path_player_container + "/LifeCenterContainer2/HBoxContainer/PlayerLifeBar")
-		
-	var context = Context.new()	
-	var infoData = context.load_data("player")
-		
-	lblPlayerName.text = infoData["player_name"] + ", " + infoData["player_title"]
-	lblCoins.text = infoData["coins"]
-	barXp.value = int(infoData["XP"])
-	barXp.max_value = int(infoData["max_xp"])
-	barLife.value = int(infoData["health"])
-	barLife.max_value = int(infoData["max_health"])
-	playerTheme = str(infoData["player_style"])
 	
-	
+	lblPlayerName.text = GameData.playerName + ", " + GameData.playerTitle
+	lblCoins.text = GameData.playerCoins
+	barXp.value = GameData.playerXp
+	barXp.max_value = GameData.playerMaxXp
+	barLife.value = GameData.playerHp
+	barLife.max_value = GameData.playerMaxHp
+
+
 func change_soundtrack():
 	var speech_player = soundtrack
-	var audio_file = "res://assets/sfx/bg_"+playerTheme+".wav"
+	var audio_file = "res://assets/sfx/bg_"+GameData.playerTheme+".wav"
 	print("--> SOUNDTRACK = "+audio_file)
 	if File.new().file_exists(audio_file):
 		var sfx = load(audio_file)
@@ -69,24 +64,17 @@ func _on_btnInventario_pressed():
 	btnMenu.popup()
 
 func _on_btnConfig_pressed():
-	
-	print("Player Tema: "+playerTheme)
-	if playerTheme == "s1":
-		playerTheme = "s2"
+	print("Tema atual: "+GameData.playerTheme)
+	if GameData.playerTheme == "s1":
+		GameData.playerTheme = "s2"
 	else:
-		playerTheme = "s1"
+		GameData.playerTheme = "s1"
 	
-	print("Player Tema: "+playerTheme)
+	print("Novo Tema: "+GameData.playerTheme)
 	
 	var context = Context.new()	
-	var infoData = context.load_data("player")
-	infoData["player_style"] = playerTheme
+	var infoData = parse_json(context.load_data("player"))	
+	infoData["player_style"] = GameData.playerTheme
 	context.save_data(infoData,"player")
-	var parallaxScene = load("res://scenes/ParallaxBackground.tscn")
 	
-	var newParallax = parallaxScene.instance()
-	$LayerBack.remove_child(get_node("LayerBack/ScrollBackground"))
-	$LayerBack.add_child(newParallax)
-	
-	# .change_scene(get_tree().get_root().get_child(get_tree().get_root().get_child_count() -1))
 	

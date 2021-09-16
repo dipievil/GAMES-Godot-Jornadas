@@ -1,7 +1,6 @@
-var loadingServices = load("res://scripts/LoadingServices.gd")
+extends "res://scripts/services/LoadingService.gd"
 
 func _ready():
-	loadingServices = loadingServices.New()
 	print("-> CARREGANDO COMPANY")
 	SetNextScreen(preload("res://scenes/LoadingPlayer.tscn"))
 	resource_name = "company"

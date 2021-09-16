@@ -9,11 +9,6 @@ var theme : Dictionary = {}
 
 var options_player_theme = ""
 
-func _init():
-	print("Carregou menu")
-	
-
-
 func _ready():
 	print("Abriu menu")
 	pass

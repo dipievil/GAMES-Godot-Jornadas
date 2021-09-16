@@ -1,10 +1,11 @@
 extends Node2D
 
-var Context = preload("res://scripts/DataService.gd")
 var api_url = "http://demo8395397.mockable.io/"
 var next_screen = ""
 var resource_name = ""	
 onready var game_data = get_node("/root/GameData")
+
+var Context = load("res://scripts/globals/Context.gd")
 
 func SetNextScreen(screen):
 	next_screen = screen
@@ -22,6 +23,7 @@ func ValidateConnection(code):
 
 func SaveLocalGame(jsonData):
 		var context = Context.new()
-		context.save_data(jsonData, resource_name)
+		Context.save_data(jsonData, resource_name)
 		if resource_name == "player":
-			game_data.player_data = jsonData
+			#game_data.player_data = jsonData
+			game_data.dataToProp(jsonData)

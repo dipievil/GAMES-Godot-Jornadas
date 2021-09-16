@@ -16,7 +16,6 @@ config/icon="res://assets/icon.png"
 
 [autoload]
 
-ParallaxService="*res://scripts/services/ParallaxService.gd"
 GameData="*res://scripts/globals/GameData.gd"
 
 [display]

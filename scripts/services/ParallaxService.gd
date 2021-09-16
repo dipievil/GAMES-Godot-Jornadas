@@ -1,11 +1,5 @@
 extends Node
 
-var Context = load("res://scripts/DataService.gd")
-
-func load_theme_id():
-	var context = Context.new()	
-	var infoData = context.load_data("player")
-	return infoData["player_style"]
 
 func change_parallax_layers(themeId):
 	var nLayers = 0
