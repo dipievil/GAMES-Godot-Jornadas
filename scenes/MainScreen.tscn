@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://assets/fonts/Roboto-Bold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/icons/Coins.png" type="Texture" id=2]
@@ -8,11 +8,10 @@
 [ext_resource path="res://assets/icons/duelo.png" type="Texture" id=6]
 [ext_resource path="res://scripts/MainScreen.gd" type="Script" id=7]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=8]
-[ext_resource path="res://assets/sfx/bg_s1.wav" type="AudioStream" id=9]
+[ext_resource path="res://assets/sfx/bg_s2.wav" type="AudioStream" id=9]
 [ext_resource path="res://assets/backgrounds/s1/fg.png" type="Texture" id=10]
 [ext_resource path="res://assets/icons/Inv.png" type="Texture" id=11]
 [ext_resource path="res://assets/icons/Config.png" type="Texture" id=12]
-[ext_resource path="res://scenes/ConfigMenu.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scripts/ParallaxForeground.gd" type="Script" id=14]
 [ext_resource path="res://scenes/Avatar.tscn" type="PackedScene" id=15]
 
@@ -111,8 +110,39 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="LayerActors" type="CanvasLayer" parent="."]
+
+[node name="Player" type="Node2D" parent="LayerActors"]
+z_index = 3
+
+[node name="Player" parent="LayerActors/Player" instance=ExtResource( 8 )]
+position = Vector2( 91.0251, 339.544 )
+z_index = 23
+
+[node name="LayerTop" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="FrontEffects" type="Node2D" parent="LayerTop"]
+script = ExtResource( 14 )
+
+[node name="FrontArea" type="ParallaxBackground" parent="LayerTop/FrontEffects"]
+layer = 8
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="LayerTop/FrontEffects/FrontArea"]
+show_behind_parent = true
+motion_scale = Vector2( 2, 1 )
+motion_mirroring = Vector2( 630, 0 )
+
+[node name="Sprite" type="Sprite" parent="LayerTop/FrontEffects/FrontArea/ParallaxLayer"]
+show_behind_parent = true
+position = Vector2( -5, 0.2 )
+scale = Vector2( 2.656, 2.656 )
+texture = ExtResource( 10 )
+centered = false
+offset = Vector2( 2, 0 )
+
 [node name="LayerMid" type="CanvasLayer" parent="."]
-layer = 0
+layer = 3
 
 [node name="UI" type="Node2D" parent="LayerMid"]
 z_index = 1
@@ -409,49 +439,11 @@ scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 6 )
 offset = Vector2( 20, 20 )
 
-[node name="LayerActors" type="CanvasLayer" parent="."]
-
-[node name="Player" type="Node2D" parent="LayerActors"]
-z_index = 3
-
-[node name="Player" parent="LayerActors/Player" instance=ExtResource( 8 )]
-position = Vector2( 91.0251, 339.544 )
-z_index = 23
-
-[node name="LayerTop" type="CanvasLayer" parent="."]
-layer = 2
-
-[node name="FrontEffects" type="Node2D" parent="LayerTop"]
-script = ExtResource( 14 )
-
-[node name="FrontArea" type="ParallaxBackground" parent="LayerTop/FrontEffects"]
-layer = 8
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="LayerTop/FrontEffects/FrontArea"]
-show_behind_parent = true
-motion_scale = Vector2( 2, 1 )
-motion_mirroring = Vector2( 630, 0 )
-
-[node name="Sprite" type="Sprite" parent="LayerTop/FrontEffects/FrontArea/ParallaxLayer"]
-show_behind_parent = true
-position = Vector2( -5, 0.2 )
-scale = Vector2( 2.656, 2.656 )
-texture = ExtResource( 10 )
-centered = false
-offset = Vector2( 2, 0 )
-
 [node name="LayerHUD" type="CanvasLayer" parent="."]
-layer = 3
+layer = 4
 
 [node name="TopMenu" type="Node2D" parent="LayerHUD"]
 z_index = 2
-
-[node name="ConfigArea" type="Node2D" parent="LayerHUD/TopMenu"]
-z_index = 5
-
-[node name="ConfigMenu" parent="LayerHUD/TopMenu/ConfigArea" instance=ExtResource( 13 )]
-position = Vector2( 166.122, 117.984 )
-script = null
 
 [node name="InventoryArea" type="Node2D" parent="LayerHUD/TopMenu"]
 

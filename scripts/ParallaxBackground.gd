@@ -1,19 +1,18 @@
-extends "res://scripts/ParallaxService.gd"
-
-#var Context = load("res://scripts/DataService.gd")
+extends "res://scripts/services/ParallaxService.gd"
 
 var direction = Vector2(1,0)
 
 func _ready():
 	print("-> CARREGANDO PARALLAX")
-	
-	var themeId = load_theme_id()
-	change_parallax_layers(themeId)	
+	change_parallax_layers(GameData.playerTheme)
+
 
 func _process(_delta):
 	var parallax = $Parallax
 	parallax.scroll_offset -= direction
-	
+	if GameData.gameTheme != GameData.playerTheme:
+		change_parallax_layers(GameData.playerTheme)
+		GameData.gameTheme = GameData.playerTheme
 
 func change_parallax_layers(themeId):
 	var nLayers = 0
