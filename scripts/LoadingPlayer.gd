@@ -1,9 +1,9 @@
-extends "res://scripts/Loading.gd"
+extends "res://scripts/services/LoadingService.gd"
 
 func _ready():
 	print("-> CARREGANDO PLAYER")
 	resource_name = "player"
-	next_screen = preload("res://scenes/LoadingTheme.tscn")	
+	SetNextScreen(preload("res://scenes/LoadingTheme.tscn"))	
 	$HTTPRequestPlayer.request(api_url+resource_name)	
 
 func _on_HTTPRequestPlayer_request_completed(_result, response_code, _headers, body):

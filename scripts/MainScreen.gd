@@ -1,8 +1,8 @@
 extends Node2D
 
-var Context = preload("res://scripts/DataService.gd")
+var Context = load("res://scripts/globals/Context.gd")
 
-onready var _soundtrack = $AudioStreamPlayer2D
+onready var soundtrack = $AudioStreamPlayer2D
 
 const path_player_container = "LayerMid/UI/Screen/MarginContainer/MainGame/PlayerInfoLine/PlayerInfoContainer"
 const path_next_screen = "res://scenes/MainMenu.tscn"
@@ -10,12 +10,13 @@ const path_next_screen = "res://scenes/MainMenu.tscn"
 func _ready():
 	print("-> CENA INICIAL")
 	load_player_data()
-
+	change_soundtrack()
+	var context = Context.new()
 
 func _process(_delta):
 	
-	if _soundtrack.playing == false:
-		_soundtrack.play()
+	if soundtrack.playing == false:
+		soundtrack.play()
 
 
 func load_player_data():
@@ -23,27 +24,22 @@ func load_player_data():
 	var lblCoins = get_node(path_player_container + "/NameContainer/HBoxContainer/lblCoins")
 	var barXp : ProgressBar = get_node(path_player_container + "/XPCenterContainer/HBoxContainer/XPBar")
 	var barLife : ProgressBar  = get_node(path_player_container + "/LifeCenterContainer2/HBoxContainer/PlayerLifeBar")
-		
-	var context = Context.new()	
-	var infoData = context.load_data("player")
-		
-	lblPlayerName.text = infoData["player_name"] + ", " + infoData["player_title"]
-	lblCoins.text = infoData["coins"]
-	barXp.value = int(infoData["XP"])
-	barXp.max_value = int(infoData["max_xp"])
-	barLife.value = int(infoData["health"])
-	barLife.max_value = int(infoData["max_health"])
 	
+	lblPlayerName.text = GameData.playerName + ", " + GameData.playerTitle
+	lblCoins.text = GameData.playerCoins
+	barXp.value = GameData.playerXp
+	barXp.max_value = GameData.playerMaxXp
+	barLife.value = GameData.playerHp
+	barLife.max_value = GameData.playerMaxHp
 
-#configbutton
-func _on_TextureButton_pressed():
-	pass # Replace with function body.
 
-
-func _on_btnConfig_pressed():
-	print("--> ABRIR CONFIG")	
-	var btnMenu = get_node("LayerHUD/TopMenu/ConfigArea/ConfigMenu/PopupDialog")
-	btnMenu.popup()
+func change_soundtrack():
+	var speech_player = soundtrack
+	var audio_file = "res://assets/sfx/bg_"+GameData.playerTheme+".wav"
+	print("--> SOUNDTRACK = "+audio_file)
+	if File.new().file_exists(audio_file):
+		var sfx = load(audio_file)
+		speech_player.stream = sfx
 
 
 func _on_btnJornadas_pressed():
@@ -59,7 +55,6 @@ func _on_btnDuelo_pressed():
 
 
 func _on_btnBack_pressed():
-	#get_parent().add_child(next_screen)
 	var _e = get_tree().change_scene(path_next_screen)	
 	queue_free()
 
@@ -68,3 +63,18 @@ func _on_btnInventario_pressed():
 	var btnMenu = get_node("LayerHUD/TopMenu/InventoryArea/Inventory/Popup")
 	btnMenu.popup()
 
+func _on_btnConfig_pressed():
+	print("Tema atual: "+GameData.playerTheme)
+	if GameData.playerTheme == "s1":
+		GameData.playerTheme = "s2"
+	else:
+		GameData.playerTheme = "s1"
+	
+	print("Novo Tema: "+GameData.playerTheme)
+	
+	var context = Context.new()	
+	var infoData = parse_json(context.load_data("player"))	
+	infoData["player_style"] = GameData.playerTheme
+	context.save_data(infoData,"player")
+	
+	
