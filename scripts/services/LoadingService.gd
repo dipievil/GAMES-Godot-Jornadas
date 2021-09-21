@@ -22,8 +22,8 @@ func ValidateConnection(code):
 		return false
 
 func SaveLocalGame(jsonData):
-		var context = Context.new()
-		Context.save_data(jsonData, resource_name)
-		if resource_name == "player":
-			#game_data.player_data = jsonData
-			game_data.dataToProp(jsonData)
+	var context = Context.new()
+	context.clear_data(resource_name)	
+	context.save_data(jsonData, resource_name)
+	if resource_name == "player":
+		game_data.dataToProp(jsonData)

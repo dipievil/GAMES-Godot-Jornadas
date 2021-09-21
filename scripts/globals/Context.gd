@@ -15,6 +15,13 @@ func save_file(data,file_name):
 	file.store_string(to_json(data))
 	file.close()
 
+func clear_data(resource_name):
+	var file = Directory.new()
+	var file_name = get_file_name_by_resource(resource_name)
+	if file.file_exists(file_name):
+		file.remove(file_name)
+
+
 func load_file(file_name):
 	var file = File.new()
 	file.open(file_name, File.READ)
@@ -31,4 +38,4 @@ func load_file(file_name):
 
 func get_file_name_by_resource(resource_name):
 	var file_path = "user://"
-	return str(file_path) + "DATA_" + str(resource_name) + ".sav"
+	return str(file_path) + ("DATA_" + str(resource_name) + ".sav").to_lower()

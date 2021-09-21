@@ -1,7 +1,6 @@
 extends Control
 
-var Context = load("res://scripts/DataService.gd")
-var Utils = preload("res://scripts/UtilService.gd")
+var Context = load("res://scripts/globals/Context.gd")
 
 const loading = preload("res://scenes/LoadingCompany.tscn")
 
@@ -9,7 +8,6 @@ export var path = "."
 
 func _ready():
 	print("-> CENA PRINCIPAL")
-	# request.connect("request_completed",self,"_on_request_completed")
 	
 func _process(_delta):
 	pass

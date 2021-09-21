@@ -25,7 +25,7 @@ margin_right = 520.108
 margin_bottom = 715.888
 custom_fonts/font = SubResource( 1 )
 text = "Carregando as
-Jornadas..."
+suas jornadas..."
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false

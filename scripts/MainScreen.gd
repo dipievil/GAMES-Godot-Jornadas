@@ -11,7 +11,6 @@ func _ready():
 	print("-> CENA INICIAL")
 	load_player_data()
 	change_soundtrack()
-	var context = Context.new()
 
 func _process(_delta):
 	
@@ -34,12 +33,14 @@ func load_player_data():
 
 
 func change_soundtrack():
-	var speech_player = soundtrack
+	var musicplayer = soundtrack
 	var audio_file = "res://assets/sfx/bg_"+GameData.playerTheme+".wav"
 	print("--> SOUNDTRACK = "+audio_file)
 	if File.new().file_exists(audio_file):
 		var sfx = load(audio_file)
-		speech_player.stream = sfx
+		musicplayer.stream = sfx
+		musicplayer.stop()
+		musicplayer.play()
 
 
 func _on_btnJornadas_pressed():
@@ -71,10 +72,15 @@ func _on_btnConfig_pressed():
 		GameData.playerTheme = "s1"
 	
 	print("Novo Tema: "+GameData.playerTheme)
-	
+	var infoData = ""
 	var context = Context.new()	
-	var infoData = parse_json(context.load_data("player"))	
+	var loaded_data = context.load_data("player")
+	if typeof(loaded_data) != 18:
+		infoData = parse_json(loaded_data)
+	else:
+		infoData = loaded_data
 	infoData["player_style"] = GameData.playerTheme
+	change_soundtrack()
 	context.save_data(infoData,"player")
 	
 	
